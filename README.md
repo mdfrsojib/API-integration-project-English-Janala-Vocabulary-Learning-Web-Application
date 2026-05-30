@@ -30,87 +30,40 @@ https://openapi.programming-hero.com/api/word/5
 https://openapi.programming-hero.com/api/words/all
 ```
 
-# Work To do
+# Workings description
 
-### 1. Show Levels on The UI
+1. Load levels on page load
+   - Fetch all levels from API-01: https://openapi.programming-hero.com/api/levels/all
+   - Render center-aligned lesson buttons dynamically.
 
-- [ ] Show a center-aligned heading as Figma
+2. Default UI state
+   - Show a default placeholder text in the vocabulary area.
+   - Keep loading spinner hidden until a request starts.
 
----
+3. On level click
+   - Show loading spinner.
+   - Fetch words for the selected level from API-02: https://openapi.programming-hero.com/api/level/{id}
+   - Render word cards (word, meaning, pronunciation, action icons).
+   - Highlight the active level button.
+   - If no words found, show "No Word Found" message.
+   - Hide loading spinner when complete.
 
-- [ ] Create dynamically generated buttons from **API-01** for each lesson
-- [ ] Lesson Buttons will be displayed on page load
+4. Card actions
+   - Details icon opens a modal and fetches word details from API-03: https://openapi.programming-hero.com/api/word/{id}
+   - Modal shows pronunciation, example sentence, synonyms, and a "Complete Learning" button to close.
+   - Heart icon saves the word to a saved list (use localStorage).
+   - Sound icon triggers pronounceWord(word) using SpeechSynthesis.
 
----
+5. Search behavior
+   - Typing in search resets the active level.
+   - Search across loaded words (or call API if needed) and display matching cards.
+   - Show empty state if no results.
 
-### 2. Show Word Cards Based on Level
+6. Data handling & UX
+   - Avoid rendering falsy values (undefined/null).
+   - Provide clear error/empty messages.
+   - Ensure responsive layout and accessible controls.
 
-- [ ] Show a default text that will be displayed in the Vocabulary section initially
-- [ ] on Clicking a Specific Lesson Button Load All the words from **API-02**
-- [ ] Display all words for a selected lesson in a card format, showing:
-
-  - [ ] Word
-  - [ ] Word meaning & pronunciation
-  - [ ] Two buttons with relevant icons as per Figma
-
-- [ ] Show **\*No Word Found** message if no words exist for a lesson
-
----
-
-- [ ] Create functionality to highlight the active lesson button
-
----
-
-### 3. Use Different Color on The Active Level Button
-
-- [ ] After Successfully Loading words of a level , diffirentiate the button so user can understand which button is active
-
-### 4. Vocabulary Details
-
-- [ ] Create functionality to open a modal when clicking the details icon
-- [ ] Data will be load from **API-03**
-- [ ] modal will displays:
-  - [ ] Word with pronunciation
-  - [ ] Example sentence
-  - [ ] Synonyms
-  - [ ] A "Complete Learning" button to close the modal
-
-### 5. Handling Invalid Data
-
-- [ ] avoid displaying falsy values like `undefined` or `null`
-- [ ] display relevant words if no data is found
-
-### 6. Loading Spinner
-
-- [ ] Create a loading spinner that will be display when vocabulary is loading from API
-
-### 7. Implement Search Functionality
-
-- [ ] Take a input Box.
-- [ ] on Changing value It will Search word and show in the UI.
-- [ ] If anyone Do search reset active button
-
-### 8. Save Word Feature
-
-- [ ] in the UI of Card add a button `Heart icon`
-- [ ] on Clicking it. Store the Word in the Saved Box
-- [ ] Show Saved words in a Different Section.
-
-### 9. Speak your Vocabularies
-
-- [ ] Create functionality for voice pronunciation of vocabulary words
-- [ ] Use below function and implement on clicking sound icon
-
-```js
-function pronounceWord(word) {
-  const utterance = new SpeechSynthesisUtterance(word);
-  utterance.lang = "en-EN"; // English
-  window.speechSynthesis.speak(utterance);
-}
-```
-
-For More >> you can explore this implementation 👉 [https://codepen.io/Ferdous-Zihad/pen/PwoJMmJ](https://codepen.io/Ferdous-Zihad/pen/PwoJMmJ)
-
----
-Bonus : How to create Private Repository for next assignments
-## Test Repo - :  https://classroom.github.com/a/Fgjib-lr
+7. Extras
+   - Persist saved words in localStorage and show them in a separate section.
+   - Keep interactions fast and show spinner only when network requests are in progress.
