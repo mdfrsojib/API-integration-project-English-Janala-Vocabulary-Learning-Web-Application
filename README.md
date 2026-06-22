@@ -32,38 +32,48 @@ https://openapi.programming-hero.com/api/words/all
 
 # Workings description
 
-1. Load levels on page load
-   - Fetch all levels from API-01: https://openapi.programming-hero.com/api/levels/all
-   - Render center-aligned lesson buttons dynamically.
+English Janala — Project Overview
 
-2. Default UI state
-   - Show a default placeholder text in the vocabulary area.
-   - Keep loading spinner hidden until a request starts.
+English Janala is a lightweight vocabulary-learning web application that consumes the Programming Hero OpenAPI to present learners with level-based word lists, detailed word information, and simple learning utilities. The project focuses on clean UI, responsive behavior, and a fast, accessible user experience.
 
-3. On level click
-   - Show loading spinner.
-   - Fetch words for the selected level from API-02: https://openapi.programming-hero.com/api/level/{id}
-   - Render word cards (word, meaning, pronunciation, action icons).
-   - Highlight the active level button.
-   - If no words found, show "No Word Found" message.
-   - Hide loading spinner when complete.
+Initial Working Process
 
-4. Card actions
-   - Details icon opens a modal and fetches word details from API-03: https://openapi.programming-hero.com/api/word/{id}
-   - Modal shows pronunciation, example sentence, synonyms, and a "Complete Learning" button to close.
-   - Heart icon saves the word to a saved list (use localStorage).
-   - Sound icon triggers pronounceWord(word) using SpeechSynthesis.
+1. Show Levels on the UI
+   - On page load, fetch all available levels from `https://openapi.programming-hero.com/api/levels/all`.
+   - Dynamically render the returned levels as center-aligned lesson buttons so users can select a level quickly.
 
-5. Search behavior
-   - Typing in search resets the active level.
-   - Search across loaded words (or call API if needed) and display matching cards.
-   - Show empty state if no results.
+2. Default UI State
+   - Display a friendly placeholder in the vocabulary area to guide first-time users.
+   - Keep the network loading spinner hidden until the app initiates a request.
 
-6. Data handling & UX
-   - Avoid rendering falsy values (undefined/null).
-   - Provide clear error/empty messages.
-   - Ensure responsive layout and accessible controls.
+3. Level Selection & Word Loading
+   - When a user selects a level, show the loading spinner and request the level's words from `https://openapi.programming-hero.com/api/level/{id}`.
+   - Render each word as a card containing the term, meaning, pronunciation, and action icons (details, favorite, play sound).
+   - Highlight the active level button and show an empty-state message when a level contains no words.
 
-7. Extras
-   - Persist saved words in localStorage and show them in a separate section.
-   - Keep interactions fast and show spinner only when network requests are in progress.
+4. Word Details & Interactions
+   - The details action fetches additional word information from `https://openapi.programming-hero.com/api/word/{id}` and displays it in a modal (pronunciation, example sentence, synonyms).
+   - Users can mark words as saved (persisted to `localStorage`) and play pronunciation via the Web Speech API.
+
+5. Search & Filtering
+   - Search input resets the active level and filters the currently loaded words to match the query.
+   - If no results match the search, the app shows a clear empty-state message.
+
+6. Data Handling, UX & Accessibility
+   - Avoid rendering falsy values (null/undefined) in the UI; provide sensible fallbacks where data is absent.
+   - Show clear error and empty-state messages for better guidance.
+   - Ensure the application is responsive and accessible by using semantic markup and keyboard-friendly controls.
+
+7. Persistence & Extras
+   - Persist the user's saved words in `localStorage` so favorites remain available across sessions.
+   - Keep interactions snappy: network indicators appear only during active requests and the UI minimizes reflows.
+
+Developer Notes
+   - Code is organized with modular functions that handle fetching, rendering, and localStorage management.
+   - Use of the Web Speech API for pronunciation and a small modal component for word details improves learner engagement.
+   - To run locally, open `index.html` in a static server or the browser; network requests require an internet connection to the API endpoints listed above.
+
+Future Improvements
+   - Add pagination or lazy-loading for very large level lists.
+   - Support exporting/importing saved-word lists and user preferences.
+   - Add unit tests for fetching and rendering functions.
