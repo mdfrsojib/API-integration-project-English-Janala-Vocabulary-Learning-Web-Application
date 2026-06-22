@@ -5,13 +5,7 @@
 ---
 ---
 ## Wakatime
-<img src="https://wakatime.com/share/@YOUR_USERNAME/last_7_days.svg" alt="WakaTime stats">
 
-Markdown (all time / summary):
-<img src="https://wakatime.com/share/@YOUR_USERNAME/summary.svg" alt="WakaTime stats">
-
-HTML link (clickable):
-<img src="https://wakatime.com/share/@YOUR_USERNAME/last_7_days.svg" alt="wakatime">
 --
 ## ⚡ API Endpoints
 
