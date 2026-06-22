@@ -1,7 +1,7 @@
 # ENGLISH <img width="25px" src="./assets/logo.png" /> JANALA
 
 ---
-## Live Link : 
+## Live Link : https://mdfrsojib.github.io/API-integration-project-English-Janala-Vocabulary-Learning-Web-Application/
 ---
 ## ⚡ API Endpoints
 
